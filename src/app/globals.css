@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eef1f6;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --sidebar: #0f172a;
+  --accent: #f59e0b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: linear-gradient(
+    165deg,
+    #f8fafc 0%,
+    #f1f5f9 35%,
+    #fffbeb 70%,
+    #f8fafc 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.dst-main-surface {
+  border-radius: 1.25rem;
+  border: 1px solid rgb(226 232 240 / 0.9);
+  background: rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(8px);
+}
+
+@keyframes dst-bar-grow {
+  from {
+    transform: scaleX(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dst-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dst-ring-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(244 63 94 / 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgb(244 63 94 / 0);
+  }
+}
+
+@keyframes dst-donut-in {
+  from {
+    transform: rotate(-90deg) scale(0.85);
+    opacity: 0.5;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.dst-animate-bar {
+  transform-origin: left center;
+  animation: dst-bar-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.dst-animate-up {
+  animation: dst-fade-up 0.55s ease-out forwards;
+}
+
+.dst-animate-donut {
+  animation: dst-donut-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.dst-pulse-alert {
+  animation: dst-ring-pulse 2s ease-in-out infinite;
+}
+
+@media print {
+  aside,
+  header,
+  nav,
+  button {
+    display: none !important;
+  }
+}
